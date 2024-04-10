@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:51:46 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/04/10 13:18:22 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:47:46 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ class Contact
         std::string _darkestSecret;
         int         _index;
 
-        std::string Contact::_getInput(std::string str);
+        std::string _getInput(std::string str) const;
     
     public :
-        void    start();
+        void    startContact();
+        void    setindex(int i);
+        std::string    display();
 };
 
 #endif
