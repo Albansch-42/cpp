@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 12:30:40 by aschmitt          #+#    #+#              #
-#    Updated: 2024/04/10 15:19:38 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/04/10 16:00:13 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,7 @@ $(OBJDIR)/%.o: %.cpp $(HEADER)
 		$(CC) $(FLAGS) -c $< -o $@
 
 
-clean:
-		$(RM) $(OBJDIR) $(OBJ)
 
-fclean: clean
-		$(RM) $(NAME)
 
 re: clean all
 
