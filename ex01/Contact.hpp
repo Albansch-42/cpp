@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:51:46 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/04/10 15:47:46 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:11:13 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ class Contact
     public :
         void    startContact();
         void    setindex(int i);
-        std::string    display();
+        std::string    GetName();
+        void    Display();
+        void    Search();
 };
 
 #endif

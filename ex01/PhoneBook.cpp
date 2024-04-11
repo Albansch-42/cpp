@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:01:32 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/04/10 15:59:51 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:22:50 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,25 @@ void    PhoneBook::add(void)
 
 void    PhoneBook::display(void)
 {
+    int input = -1;
 
+    std::cout << "|     index|first name| last name|  nickname|"<<  std::endl;
     for (int i = 0; i < 8; i++)
     {
-        if (!this->_contacts[i].display().empty())
-            std::cout << i << "= " << this->_contacts[i].display() <<  std::endl;
+        if (!this->_contacts[i].GetName().empty())
+        {
+            std::cout << "|         " << i;
+            this->_contacts[i].Display();
+        }
     }
+    while (1)
+    {
+        std::cout << "enter the contact index: " << std::flush;
+        std::cin >> input;
+        if (input >= 0 && input <= 7)
+            break ;
+        else
+            std::cout << "Invalid input; please try again." << std::endl;
+    }
+    this->_contacts[input].Search();    
 }

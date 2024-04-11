@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:04:11 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/04/10 15:59:52 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:24:58 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int main()
             Book.display();
         }
         std::cout << "> " << std::flush;
+        // std::cin >> s;
         std::getline(std::cin, s);
     }
+    return (0);
 }
