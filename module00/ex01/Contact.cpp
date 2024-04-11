@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:06:31 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/04/11 12:19:31 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:38:58 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ std::string Contact::_getInput(std::string str) const
         std::cout << str << std::flush;
         std::getline(std::cin, input);
         if (!input.empty())
+            break ;
+        else if (std::cin.eof())
             break ;
         else
             std::cout << "Invalid input; please try again." << std::endl;
