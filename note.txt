@@ -1,0 +1,25 @@
+C++ allocation memoire :
+
+new : alloue dynamiquement memoire 
+    type value = new type;
+    en cas de probleme allocation, exception de type bad_alloc est remonté
+        si exception n'est pas géré le programme s'arrete;
+    sinon on peux utilisé nothrow : vérifié si pointeur est null;
+
+    short p;
+    p = new (nothrow) short;
+    if (p == NULL)
+        cerr << "allocation echoué" << endl;
+
+    ou 
+
+    short p;
+    try {
+        p = new (nothrow) short;
+        bla bla bla p;
+    } catch(bad_alloc ba){
+        cerr << "allocation echoué" << endl;
+        cerr << ba.what() << endl;
+    }
+
+    Ne pas oiblier de delete apres;

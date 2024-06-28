@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 17:12:56 by aschmitt          #+#    #+#              #
-#    Updated: 2024/04/11 17:15:07 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/06/28 15:45:30 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ RM			= rm -rf
 
 OBJDIR = .objFiles
 
-FILES		= main 
+FILES		= main Zombie newZombie randomChump
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= 
+HEADER		= Zombie.hpp
 
 all: $(NAME)
 

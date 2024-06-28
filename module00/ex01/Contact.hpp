@@ -6,15 +6,15 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:51:46 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/04/11 12:11:13 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:15:18 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
-#define CONTACT_HPP
+# define CONTACT_HPP
 
-#include <iomanip>
-#include <iostream>
+# include <iomanip>
+# include <iostream>
 
 class Contact
 {
