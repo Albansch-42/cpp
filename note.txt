@@ -23,3 +23,11 @@ new : alloue dynamiquement memoire
     }
 
     Ne pas oiblier de delete apres;
+
+
+les références : 
+                - doit toujours etre initialisé
+                - ne peux pas etre null;
+                - si probleme et qu'on doit le mettre a null, mettre une exception try et catch
+
+                
