@@ -30,4 +30,11 @@ les références :
                 - ne peux pas etre null;
                 - si probleme et qu'on doit le mettre a null, mettre une exception try et catch
 
-                
+Nombre flotant : 
+
+La norme IEEE-754 : - un bit de signe
+                    - un exposant donnant son ordre de grandeur 
+                    - une mantisse spécifiant les chiffres réels du nombre
+
+            s = bit de signe, e = exposant, m = mantisse
+    nombre = s * (m * 2^e)
