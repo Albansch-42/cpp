@@ -1,7 +1,7 @@
 NAME		= fixed
 	
 CC			= c++
-FLAGS		= -Wall -Wextra -Werror -std=c++11const Fixed &fixed
+FLAGS		= -Wall -Wextra -Werror -std=c++11
 RM			= rm -rf
 
 OBJDIR = .objFiles
