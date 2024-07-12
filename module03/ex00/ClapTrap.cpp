@@ -37,7 +37,7 @@ void    ClapTrap::attack(std::string const& target)
 {
     if (this->Energy_points <= 0)
     {
-        std::cout << "ClapTrap " << this->Name << " is out of energy!" << std::endl;
+        std::cout << this->Name << " is out of energy!" << std::endl;
         return;
     }
     std::cout << "ClapTrap " << this->Name << " attacks " << target << ", causing " << this->Attack_damage << " points of damage!" << std::endl;

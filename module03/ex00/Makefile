@@ -6,11 +6,11 @@ RM			= rm -rf
 
 OBJDIR = .objFiles
 
-FILES		= main ClapTrap ScavTrap
+FILES		= main ClapTrap
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= ClapTrap.hpp ScavTrap.hpp
+HEADER		= ClapTrap.hpp
 
 all: $(NAME)
 
