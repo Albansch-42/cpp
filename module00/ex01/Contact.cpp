@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:06:31 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/04/11 16:38:58 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:44:07 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,20 @@ std::string Contact::_getInput(std::string str) const
 }
 
 void    Contact::startContact(void) {
-    // std::cin.ignore();
     
     this->_firstName = this->_getInput("Please enter you first name: ");
-    this->_lastName = this->_getInput("Please enter your last name: ");
-    this->_nickname = this->_getInput("Please enter your nickname: ");
-    this->_phoneNumber = this->_getInput("Please enter your phone number: ");
-    this->_darkestSecret = this->_getInput("Please enter your darkest secret: ");
-    std::cout << std::endl;
+    if (std::cin.good())
+        this->_lastName = this->_getInput("Please enter your last name: ");
+    if (std::cin.good())
+        this->_nickname = this->_getInput("Please enter your nickname: ");
+    if (std::cin.good())
+        this->_phoneNumber = this->_getInput("Please enter your phone number: ");
+    if (std::cin.good())
+        this->_darkestSecret = this->_getInput("Please enter your darkest secret: ");
+    if (! std::cin.good())
+        std::cout << "\neof detected" << std::endl;
+    else
+        std::cout << std::endl;
 }
 
 void    Contact::setindex(int i) {

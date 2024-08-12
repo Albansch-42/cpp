@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:01:32 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/04/11 16:40:34 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:40:54 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    PhoneBook::start(void)
     std::cout << "----------------------------------" << std::endl;
     std::cout << "ADD       : To add a contact." << std::endl;
     std::cout << "SEARCH    : To search for a contact." << std::endl;
-    std::cout << "EXIT      : to quite the PhoneBook." << std::endl;
+    std::cout << "EXIT      : to quit the PhoneBook." << std::endl;
     std::cout << "----------------------------------" << std::endl;
     std::cout << std::endl;
 }
@@ -56,6 +56,11 @@ void    PhoneBook::display(void)
             break ;
         else
             std::cout << "Invalid input; please try again." << std::endl;
+    }
+    if (! std::cin.good())
+    {
+        std::cout << "\neof detected" << std::endl;
+        return ;
     }
     this->_contacts[s[0] - '0'].Search();    
 }
