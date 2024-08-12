@@ -6,7 +6,7 @@ Weapon::Weapon(std::string type)
 }
 Weapon::~Weapon()
 {
-    std::cout << this->type << " : destroy" << std::endl;
+    std::cout<< "<Weapons> " << this->type << " : destroy" << std::endl;
 }
 
 const std::string&	Weapon::getType()

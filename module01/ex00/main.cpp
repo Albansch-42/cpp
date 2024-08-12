@@ -6,7 +6,7 @@ int main( void ) {
 
     Zombie zombi1("jean");
     
-    Zombie *zombi2 = newZombie("deux");
+    Zombie *zombi2 = newZombie("Luc");
     zombi2->announce();
     delete zombi2;
 
