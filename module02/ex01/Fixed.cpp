@@ -1,6 +1,4 @@
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
 Fixed::Fixed(void)
 {
@@ -46,7 +44,7 @@ Fixed::Fixed( const int n)
 Fixed::Fixed( const float n)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->n = (std::roundf(n * (1 << this->nb_bits)));
+    this->n = (roundf(n * (1 << this->nb_bits)));
 }
 
 float   Fixed::toFloat( void ) const

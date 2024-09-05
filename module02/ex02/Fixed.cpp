@@ -39,7 +39,7 @@ Fixed::Fixed( const int n)
 
 Fixed::Fixed( const float n)
 {
-    this->n = (std::roundf(n * (1 << this->nb_bits)));
+    this->n = (roundf(n * (1 << this->nb_bits)));
 }
 
 float   Fixed::toFloat( void ) const

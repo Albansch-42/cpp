@@ -14,19 +14,19 @@ HEADER		= Fixed.hpp
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	@$(CC) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ) $(HEADER) Makefile
+	$(CC) $(OBJ) -o $(NAME)
 
 $(OBJDIR)/%.o: %.cpp $(HEADER)
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(OBJDIR) $(OBJ)
+	$(RM) $(OBJDIR) $(OBJ)
 
 fclean: clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
-re: fclean all%  
+re: fclean all  
 
 .PHONY: all clean fclean re
