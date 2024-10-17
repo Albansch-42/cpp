@@ -13,15 +13,16 @@ class Bureaucrat
     public :
         Bureaucrat(void);
         Bureaucrat(std::string name, int grade);
-
+        Bureaucrat(const Bureaucrat &b);
+        Bureaucrat& operator=(const Bureaucrat &bureau);
+        ~Bureaucrat();
+        
         std::string const getName() const;
         int getGrade() const;
         void incrementGrade();
         void decrementDownGrade();
 
-        Bureaucrat& operator=(const Bureaucrat &bureau);
-
-        ~Bureaucrat();
+        
 
         class GradeTooHighException : public std::exception {
 			public:

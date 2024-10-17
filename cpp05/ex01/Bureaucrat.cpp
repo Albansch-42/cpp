@@ -35,14 +35,27 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 void Bureaucrat::incrementGrade()
 {
     if (_Grade - 1 < 1)
-        throw GradeTooHighException();
+        throw Bureaucrat::GradeTooHighException();
     _Grade--;
 }
 void Bureaucrat::decrementDownGrade()
 {
     if (_Grade + 1 > 150)
-        throw GradeTooLowException();
+        throw Bureaucrat::GradeTooLowException();
     _Grade++;
+}
+
+void Bureaucrat::signForm(Form &f)
+{
+    try
+    {
+        f.beSigned(*this);
+        std::cout << _Name << " signs " << f.getName() << std::endl;
+    }
+    catch(const std::exception& e) 
+    {
+        std::cout << _Name << " couldn’t sign " << f.getName() << " because the grade is too low" << std::endl;
+    }   
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {

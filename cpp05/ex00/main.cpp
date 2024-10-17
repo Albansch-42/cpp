@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:04:11 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/10/17 16:33:38 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:57:40 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int main()
 {
     Bureaucrat b;
     Bureaucrat Jean("Jean", 1);
-
-    std::cout << b << std::endl << Jean << std::endl;
+    Bureaucrat A(Jean);
+    
+    std::cout << b << std::endl << Jean << std::endl << A << std::endl;
      
     try
     {
