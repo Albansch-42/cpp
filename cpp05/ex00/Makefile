@@ -6,11 +6,11 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 12:30:40 by aschmitt          #+#    #+#              #
-#    Updated: 2024/10/16 19:12:47 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/10/17 14:31:42 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= PhoneBook
+NAME		= Bureaucrat
 	
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
