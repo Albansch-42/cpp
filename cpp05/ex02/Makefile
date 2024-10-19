@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 12:30:40 by aschmitt          #+#    #+#              #
-#    Updated: 2024/10/17 17:47:07 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/10/19 16:54:50 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,21 +17,24 @@ FLAGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
 OBJDIR		= .objFiles
+SRCDIR		= src
+INCDIR		= inc
 
-FILES		= main Bureaucrat Form
+FILES		= main AForm PresidentialPardonForm  ShrubberyCreationForm Bureaucrat  RobotomyRequestForm
+INCFILE		= AForm PresidentialPardonForm  ShrubberyCreationForm Bureaucrat  RobotomyRequestForm
 
-SRC			= $(FILES:=.cpp)
+SRC			= $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= Bureaucrat.hpp Form.hpp
+HEADER		= $(addprefix $(INCDIR)/, $(INCFILE:=.hpp))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
+$(NAME): $(OBJ) $(HEADER) 
 	@$(CC) $(OBJ) -o $(NAME)
 
-$(OBJDIR)/%.o: %.cpp $(HEADER)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADER) Makefile
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -I$(INCDIR) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJDIR) $(OBJ)
@@ -41,4 +44,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re
