@@ -3,8 +3,9 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include <iostream>
-#include "AForm.hpp"
-#include "Bureaucrat.hpp"
+# include <fstream>
+# include "AForm.hpp"
+# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
