@@ -6,12 +6,12 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 17:12:56 by aschmitt          #+#    #+#              #
-#    Updated: 2024/08/29 16:25:35 by aschmitt         ###   ########.fr        #
+#    Updated: 2024/08/29 18:32:41 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		=  Moarbrainz
+NAME		=  Harll
 	
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
@@ -19,11 +19,11 @@ RM			= rm -rf
 
 OBJDIR = .objFiles
 
-FILES		= main Zombie zombieHorde
+FILES		= main Harl
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= Zombie.hpp
+HEADER		= Harl.hpp
 
 all: $(NAME)
 

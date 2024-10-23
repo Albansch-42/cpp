@@ -40,4 +40,3 @@ int main(int ac, char **av)
     inputFile.close();
     return 0;
 }
-

@@ -10,5 +10,5 @@ int main( void )
     jean.beRepaired( 10 );
     jean.highFivesGuys();
 
-    return 1;
+    return 0;
 }

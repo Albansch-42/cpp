@@ -4,27 +4,53 @@ Intern::Intern()
 {}
 Intern::~Intern()
 {}
+
+Intern::Intern(const Intern &other)
+{
+    (void)other;
+}
+Intern& Intern::operator=(const Intern &other)
+{
+    (void)other;
+    return *this;
+}
+
+AForm *Intern::Shrubbery(std::string Target)
+{
+    return new ShrubberyCreationForm(Target);
+}
+
+AForm *Intern::Robotomy(std::string Target)
+{
+    return new RobotomyRequestForm(Target);
+}
+
+
+AForm *Intern::Presidential(std::string Target)
+{
+    return new PresidentialPardonForm(Target);
+}
+
 AForm *Intern::makeForm(std::string Name, std::string Target)
 {
-    std::map <std::string, AForm *> tab;
-    tab["shrubbery creation"] = new ShrubberyCreationForm(Target);
-    tab["robotomy request"] = new RobotomyRequestForm(Target);
-    tab["presidential pardon"] = new PresidentialPardonForm(Target);
+    std::string levels[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+    AForm *(Intern::*function[]) (std::string Target) =
+    {
+        &Intern::Shrubbery,
+        &Intern::Robotomy,
+        &Intern::Presidential,
+    };
 
     std::transform(Name.begin(), Name.end(), Name.begin(), ::tolower);
 
-    AForm *result = NULL;
-    for (std::map <std::string, AForm *>::iterator it = tab.begin(); it != tab.end(); ++it) 
+    for (int i = 0; i < 3; i++)
     {
-        if (it->first == Name){ 
-            result = it->second;
+        if (Name == levels[i])
+        {
             std::cout << "Intern creates " << Name << std::endl;
+            return (this->*function[i])(Target);
         }
-        else
-            delete it->second;
     }
-    if (result == NULL)
-        std::cout << "Intern cannot create " << Name << " form" << std::endl;
-    return result;
-
+    std::cout << "Intern cannot create " << Name << " form" << std::endl;
+    return NULL;
 }

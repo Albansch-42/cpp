@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:15:47 by aschmitt          #+#    #+#             */
-/*   Updated: 2024/08/12 14:03:13 by aschmitt         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:40:26 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int main(int ac, char **av)
 	{
 		for (int j = 0; av[i][j]; j++)
 			std::cout << (char) toupper(av[i][j]);
-		if (i < ac - 1)
-				std::cout << ' ';
 	}
 	std::cout << std::endl;
 	return (0);

@@ -1,0 +1,3 @@
+# Ignorer le dossier de configuration de l'éditeur Visual Studio Code
+.vscode/
+.objFiles

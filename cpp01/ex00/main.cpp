@@ -9,7 +9,7 @@ int main( void ) {
     Zombie *zombi2 = newZombie("Luc");
     zombi2->announce();
     delete zombi2;
-
+    zombi1.announce();
     randomChump("randi");
     return 0;
 }
