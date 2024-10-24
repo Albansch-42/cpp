@@ -25,9 +25,16 @@ int	is_int(std::string s)
 	for (size_t i = 0; i < s.length(); i++)
 	{
 		if (!isdigit(s[i]))
-			return (1);
+			return (0);
 	}
 	return 1;
+}
+
+int is_char(std::string s)
+{
+	if (s.length() == 1 && !isdigit(s[0]))
+		return 1;
+	return 0;
 }
 
 void ScalarConverter::convert(std::string s)
@@ -44,5 +51,16 @@ void ScalarConverter::convert(std::string s)
 		std::cout << "float: " << std::fixed << std::setprecision(2) << n << "f" << std::endl;
 		std::cout << "double: " << std::fixed << std::setprecision(2) << n << std::endl;
 	}
-	
+	else if (is_char(s))
+	{
+		char c = s[0];
+		if (c < 32 || c == 127)
+			std::cout << "char: non-displayable" << std::endl;
+		else
+			std::cout << "char: " << c << std::endl;
+		std::cout << "int: " << static_cast<int>(c) << std::endl;
+		std::cout << "float: " << std::fixed << std::setprecision(2) << static_cast<float>(c) << "f" << std::endl;
+		std::cout << "double: " << std::fixed << std::setprecision(2) << static_cast<double>(c) << std::endl;
+	}
+	if (is_)
 }
