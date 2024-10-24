@@ -46,7 +46,7 @@ int is_float(std::string s)
 	if ( s.find( '.' ) == std::string::npos || s[s.length() - 1] != 'f' || s[s.length() - 2] == '.' )
 		return false;
 	bool point = false;
-	for (size_t i = 0; i < s.length() - 1; i++)
+	for (size_t i = 1; i < s.length() - 1; i++)
 	{
 		if (s[i] == '.')
 		{
@@ -57,7 +57,11 @@ int is_float(std::string s)
 		else if (!isdigit(s[i]))
 			return 0;
 	}
-	return 1;
+	if (s[0] == '.' && point)
+		return 0;
+	if (s[0] && (isdigit(s[0]) || s[0] == '-' || s[0] == '+' || s[0] == '.'))
+		return 1;
+	return 0;
 }
 
 int is_double(std::string s)
@@ -67,7 +71,7 @@ int is_double(std::string s)
 	if ( s.find( '.' ) == std::string::npos || s[s.length() - 1] == '.' )
 		return 0;
 	bool point = false;
-	for (size_t i = 0; i < s.length(); i++)
+	for (size_t i = 1; i < s.length(); i++)
 	{
 		if (s[i] == '.')
 		{
@@ -78,7 +82,11 @@ int is_double(std::string s)
 		else if (!isdigit(s[i]))
 			return 0;
 	}
-	return 1;
+	if (s[0] == '.' && point)
+		return 0;
+	if (s[0] && (isdigit(s[0]) || s[0] == '-' || s[0] == '+' || s[0] == '.'))
+		return 1;
+	return 0;
 }
 
 void Display_inf(std::string s)
@@ -93,6 +101,7 @@ void ScalarConverter::convert(std::string s)
 {
 	if (is_int(s))
 	{
+		
 		double n = atof(s.c_str());
 		if (n < 0 || n > 127)
 			std::cout << "char: impossible" << std::endl;
@@ -129,13 +138,13 @@ void ScalarConverter::convert(std::string s)
 		if (d < 0 || d > 127)
 			std::cout << "char: impossible" << std::endl;
 		else if (d < 32 || d == 127)
-			std::cout << "char:  Non displayable" << std::endl;
+			std::cout << "char: Non displayable" << std::endl;
 		else
 			std::cout << "char: " << static_cast<char>(d) << std::endl;
 		if (d < -2147483648 || d >= 2147483648)
 			std::cout << "int: impossible"<< std::endl;
 		else
-			std::cout << "int: " << d << std::endl;
+			std::cout << "int: " << static_cast<int>(d) << std::endl;
 		std::cout << "float: " << std::fixed << std::setprecision(2) << d << "f" << std::endl;
 		std::cout << "double: " << std::fixed << std::setprecision(2) << static_cast<double>(d) << std::endl;
 	}
@@ -149,13 +158,13 @@ void ScalarConverter::convert(std::string s)
 		if (d < 0 || d > 127)
 			std::cout << "char: impossible" << std::endl;
 		else if (d < 32 || d == 127)
-			std::cout << "char:  Non displayable" << std::endl;
+			std::cout << "char: Non displayable" << std::endl;
 		else
 			std::cout << "char: " << static_cast<char>(d) << std::endl;
 		if (d < -2147483648 || d >= 2147483648)
 			std::cout << "int: impossible"<< std::endl;
 		else
-			std::cout << "int: " << d << std::endl;
+			std::cout << "int: " << static_cast<int>(d) << std::endl;
 		std::cout << "float: " << std::fixed << std::setprecision(2) << static_cast<float>(d) << "f" << std::endl;
 		std::cout << "double: " << std::fixed << std::setprecision(2) << d << std::endl;
 
