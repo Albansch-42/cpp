@@ -3,12 +3,11 @@
 
 #include <iostream>
 #include <iomanip>
-#include <string>
-#include <climits>
-#include <limits.h>
-#include <float.h>
 #include <cstdlib>
-
+// #include <string>
+// #include <climits>
+// #include <limits.h>
+// #include <float.h>
 
 class ScalarConverter
 { 
@@ -20,8 +19,6 @@ class ScalarConverter
     
     public :
         static void convert(std::string s);
-
-
 };
 
 // std::ostream& operator<<(std::ostream& os, const ScalarConverter& other);
