@@ -3,17 +3,30 @@
 
 # include <iostream>
 
-class whatever
-{ 
-    private :
+template<typename T>
+void swap(T& a, T& b) 
+{
+	T c;
 
-    public :
-        whatever();
-        ~whatever();
-        whatever(const whatever &other);
-        whatever& operator=(const whatever &other);
-};
+	c = a;
+	a = b;
+	b = c;
+}
 
-// std::ostream& operator<<(std::ostream& os, const whatever& other);
+template<typename T>
+T min(T a, T b)
+{
+    if (a < b)
+        return a;
+    return b;
+}
 
-#endif 
+template<typename T>
+T max(T a, T b)
+{
+    if (a > b)
+        return a;
+    return b;
+}
+
+#endif

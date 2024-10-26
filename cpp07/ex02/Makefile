@@ -9,7 +9,7 @@ SRCDIR		= src
 INCDIR		= inc
 
 FILES		= main 
-INCFILE		= whatever
+INCFILE		= iter
 
 SRC			= $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
