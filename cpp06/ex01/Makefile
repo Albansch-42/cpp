@@ -1,4 +1,4 @@
-NAME		= Convert
+NAME		= Serialize
 	
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
