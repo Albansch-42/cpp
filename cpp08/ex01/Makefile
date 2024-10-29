@@ -1,4 +1,4 @@
-NAME		= easy
+NAME		= span
 	
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
@@ -8,8 +8,8 @@ OBJDIR		= .objFiles
 SRCDIR		= src
 INCDIR		= inc
 
-FILES		= main 
-INCFILE		= easyfind
+FILES		= main Span 
+INCFILE		= Span
 
 SRC			= $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
