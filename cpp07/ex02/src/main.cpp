@@ -52,9 +52,10 @@ int main(int, char**)
     delete [] mirror;
 
 
-    Array<int> *test = new Array<int>(MAX_VAL);
+    const Array<int> test(10);
+    // test[5] = 18;
 
-    *test = numbers;
-    delete test;
+    std::cout << test[5] << std::endl;
+
     return 0;
 }

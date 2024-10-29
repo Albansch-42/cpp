@@ -1,5 +1,5 @@
 #ifndef ARRAY_HPP
-# define ARRY_HPP
+# define ARRAY_HPP
 
 template <typename T>
 class Array 
@@ -31,6 +31,13 @@ class Array
         ~Array() { delete[] this->_array; };
 
         T& operator[](size_t i) {
+            if (i >= _size) {
+                throw std::out_of_range("Index out of bounds");
+            }
+            return _array[i];
+        }
+
+        const T& operator[](size_t i) const {
             if (i >= _size) {
                 throw std::out_of_range("Index out of bounds");
             }
