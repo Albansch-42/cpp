@@ -21,7 +21,16 @@ class Span
         void addNumber(int n);
         int shortestSpan();
         int longestSpan();
+
+        class NotEnoughElement : public std::exception {
+            public:
+                virtual const char *what() const throw() {
+                    return ("Not enough element");
+                }
+        };
 };
+
+
 
 // std::ostream& operator<<(std::ostream& os, const Span& other);
 
