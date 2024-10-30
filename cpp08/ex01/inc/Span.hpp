@@ -29,6 +29,12 @@ class Span
             }
         }
 
+        std::vector<int>::iterator begin() { return _tab.begin(); }
+        std::vector<int>::iterator end() { return _tab.end(); }
+
+        std::vector<int>::const_iterator begin() const { return _tab.begin(); }
+        std::vector<int>::const_iterator end() const { return _tab.end(); }
+        
         class NotEnoughElement : public std::exception {
             public:
                 virtual const char *what() const throw() {

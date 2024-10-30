@@ -6,12 +6,16 @@ Span::~Span()
 }
 Span::Span(const Span&other)
 {
-	(void)other;
+	_tab = other._tab;
+	_N = other._N;
+	_index = other._index;
 	// std::cout << "Recopy constructor called" << std::endl;
 }
 Span& Span::operator=(const Span &other)
 {
-	(void)other;
+	_tab = other._tab;
+	_N = other._N;
+	_index = other._index;
 	// std::cout << "Assignment operator called" << std::endl;
 	return *this;
 }
@@ -32,8 +36,6 @@ void Span::addNumber(int n)
 	_tab.push_back(n);
 	_index++;
 }
-
-
 
 int Span::shortestSpan()
 {
