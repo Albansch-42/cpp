@@ -5,17 +5,14 @@
 # include <vector>
 
 class ValueNotFound : public std::exception {
-			public:
-				virtual const char *	what() const throw()
-                {
-                    return ("Value not found");
-                }
-		};
+	public:
+	    virtual const char *what() const throw() {
+            return ("Value not found");
+        }
+};
 
 template<typename T>
 int	easyfind(T const & array, int n) {
-    
-
     for (typename T::const_iterator i = array.begin(); i != array.end(); ++i)
     {
         if (*i == n)
@@ -23,4 +20,5 @@ int	easyfind(T const & array, int n) {
     }
     throw ValueNotFound();
 }
+
 #endif 

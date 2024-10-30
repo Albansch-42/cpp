@@ -17,25 +17,21 @@ int main(){
     std::cout << std::endl;
 
 	std::cout << std::endl << "start looking for 1" << std::endl;
-	try
-	{
+	try {
 		int n = easyfind(jean, 1);
 		std::cout << "Value found : " << n  << std::endl;
 	}
-	catch(const std::exception& e)
-	{
+	catch(const std::exception& e) {
 		std::cerr << e.what() << '\n';
 	}
 
 
 	std::cout << std::endl << "start looking for 33" << std::endl;
-	try
-	{
+	try {
 		int n = easyfind(jean, 33);
 		std::cout << "Value found : " << n  << std::endl;
 	}
-	catch(const std::exception& e)
-	{
+	catch(const std::exception& e) {
 		std::cerr << e.what() << '\n';
 	}
 
