@@ -25,11 +25,15 @@ Span::Span(unsigned int N)
 
 void Span::addNumber(int n)
 {
+	// std::cout << "index : " << _index << std::endl;
+	// std::cout << "max : " << _N << std::endl;
 	if (_index == _N)
-		throw Span::NotEnoughElement();
+		throw std::overflow_error("Unable to add other elements");
 	_tab.push_back(n);
 	_index++;
 }
+
+
 
 int Span::shortestSpan()
 {
