@@ -25,7 +25,6 @@ int main()
     std::cout << std::endl << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
 
-    std::cout << "-----------------------------------------------------" << std::endl;
 
     Span span(10); 
 
@@ -40,12 +39,8 @@ int main()
         span.addNumbers(more_values.begin(), more_values.end());
         std::cout << "Ajout réussi !" << std::endl;
     } catch (const std::exception& e) {
-        std::cerr << "Erreur : " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
     
-    for (std::vector<int>::iterator it = span.begin(); it != span.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
     return 0;
 }
