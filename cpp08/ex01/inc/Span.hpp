@@ -43,8 +43,6 @@ class Span
         };
 };
 
-
-
 // std::ostream& operator<<(std::ostream& os, const Span& other);
 
 #endif 
