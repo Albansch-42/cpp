@@ -1,8 +1,9 @@
 #include "Span.hpp"
 
-Span::~Span()
+Span::Span(unsigned int N)
 {
-	// std::cout << "Destructor called" << std::endl;
+	_N = N;
+	_index = 0;
 }
 Span::Span(const Span&other)
 {
@@ -19,18 +20,13 @@ Span& Span::operator=(const Span &other)
 	// std::cout << "Assignment operator called" << std::endl;
 	return *this;
 }
-
-
-Span::Span(unsigned int N)
+Span::~Span()
 {
-	_N = N;
-	_index = 0;
+	// std::cout << "Destructor called" << std::endl;
 }
 
 void Span::addNumber(int n)
 {
-	// std::cout << "index : " << _index << std::endl;
-	// std::cout << "max : " << _N << std::endl;
 	if (_index == _N)
 		throw std::overflow_error("Unable to add other elements");
 	_tab.push_back(n);
@@ -39,9 +35,9 @@ void Span::addNumber(int n)
 
 int Span::shortestSpan()
 {
-	if (_index == 0 || _index == 1) {
+	if (_index == 0 || _index == 1)
 		throw Span::NotEnoughElement();
-	}
+	
 	std::sort(_tab.begin(), _tab.end());
 
 	int min = _tab[1] - _tab[0];
@@ -53,9 +49,9 @@ int Span::shortestSpan()
 }
 int Span::longestSpan()
 {
-	if (_index == 0 || _index == 1) {
+	if (_index == 0 || _index == 1)
 		throw Span::NotEnoughElement();
-	}
+	
 	std::sort(_tab.begin(), _tab.end());
 	return (_tab.back() - _tab.front());
 }

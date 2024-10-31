@@ -32,7 +32,7 @@ int main(){
 		std::cout << "Value found : " << n  << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cerr << e.what() << '\n';
+		std::cerr << "Exception: " << e.what() << '\n';
 	}
 
     return 0;
