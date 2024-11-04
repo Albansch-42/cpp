@@ -21,6 +21,7 @@ class BitcoinExchange
 
         int loadCSV();
         void print();
+        double find_closer(std::string date);
 };
 
 // std::ostream& operator<<(std::ostream& os, const BitcoinExchange& other);

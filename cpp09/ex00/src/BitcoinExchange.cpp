@@ -71,7 +71,7 @@ int	all_digit(std::string year, std::string month, std::string day, std::string 
 
 int verif_date(std::string date)
 {
-	if (date.length() != 11  ) {
+	if (date.length() != 10  ) {
 		std::cout << "leght " << std::endl;
         return 1;
     }
@@ -123,6 +123,24 @@ double	verif_value(std::string value)
 	return n;
 }
 
+double BitcoinExchange::find_closer(std::string date)
+{
+	std::map<std::string, double>::const_iterator it = _tab.find(date);
+	if (it != _tab.end()) {
+		std::cout << "good " << date << " et lower date = " << it->first << std::endl;
+        return it->second;
+    }
+	it = _tab.lower_bound(date);
+	if (it == _tab.begin()) {
+        std::cerr << "Aucune date antérieure trouvée.";
+		return -1;
+    }
+	
+	--it;
+	std::cout << date << " et lower date = " << it->first << std::endl;
+    return it->second;
+}
+
 void BitcoinExchange::print()
 {
 	std::ifstream file(_fileInput.c_str());
@@ -138,6 +156,7 @@ void BitcoinExchange::print()
 	std::getline(file, line);
 	
 	
+	
 	while (std::getline(file, line) ) {
 		index++;
 		n = line.find('|');
@@ -145,17 +164,20 @@ void BitcoinExchange::print()
 			std::cerr << "Error: Line " << index << " is invalid" << std::endl;
 			continue;
 		}
-		date = line.substr(0, n);
+		date = line.substr(0, n - 1);
 		value = line.substr(n + 2);
 		if (verif_date(date )) {
 			std::cerr << "Error: Line " << index << " is invalid" << std::endl;
 			continue;
 		}
-		int nb = verif_value(value);
+		double nb = verif_value(value);
 		if (nb == 0) {
 			std::cerr << "Error: Line " << index << " is invalid" << std::endl;
 			continue;
 		}
-		double
+		double price_bitcoin = find_closer(date);
+		if (price_bitcoin == -1)
+			continue ;
+		// std::cout << date << " => " << value << " = " << nb * price_bitcoin << std::endl;
     }
 }
