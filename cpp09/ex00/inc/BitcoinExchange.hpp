@@ -5,20 +5,22 @@
 # include <map>
 # include <fstream>
 # include <string>
-# include <cstdlib> 
+# include <cstdlib>
 
 class BitcoinExchange
 { 
     private :
         std::string _fileCSV;
+        std::string _fileInput;
         std::map<std::string, double> _tab;
     public :
-        BitcoinExchange(std::string s);
+        BitcoinExchange(std::string s1, std::string s2);
         ~BitcoinExchange();
         BitcoinExchange(const BitcoinExchange &other);
         BitcoinExchange& operator=(const BitcoinExchange &other);
 
         int loadCSV();
+        void print();
 };
 
 // std::ostream& operator<<(std::ostream& os, const BitcoinExchange& other);

@@ -7,6 +7,10 @@ int main(int argc, char** argv)
         return 1;
     }
     (void)argv;
-    BitcoinExchange BTC("data.csv");
-    BTC.loadCSV();
+    BitcoinExchange Btc("data.csv", argv[1]);
+    if (Btc.loadCSV())
+        return 1;
+    Btc.print();
+
+
 }
