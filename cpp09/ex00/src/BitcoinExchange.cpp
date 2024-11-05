@@ -26,7 +26,7 @@ int BitcoinExchange::loadCSV()
 {
 	std::ifstream file(_fileCSV.c_str());
     if (!file) {
-        std::cerr << "Error: can't open " << _fileCSV << std::endl;
+        std::cerr << "Error: could not open file: " << _fileCSV << std::endl;
 		return 1;
     }
 
@@ -50,19 +50,16 @@ int	all_digit(std::string year, std::string month, std::string day, std::string 
 	// std::cout << year << " " << std::endl;
 	for (size_t i = 0; i < year.length(); i++) {
 		if (!isdigit(year[i])){
-			// std::cout << "year" << std::endl;
 			return 1;
 		}
 	}
 	for (size_t i = 0; i < month.length(); i++) {
 		if (!isdigit(month[i]) || !isdigit(day[i])){
-			// std::cout << "month" << std::endl;
 			return 1;
 		}
 	}
 	for (size_t i = 0; i < value.length(); i++) {
 		if (!isdigit(value[i]) && value[i] != '.'){
-			// std::cout << "value" << std::endl;
 			return 1;
 		}
 	}
@@ -71,16 +68,11 @@ int	all_digit(std::string year, std::string month, std::string day, std::string 
 
 int verif_date(std::string date)
 {
-	if (date.length() != 10  ) {
-		std::cout << "leght " << std::endl;
+	if (date.length() != 10  )
         return 1;
-    }
 
 	if (date[4] != '-' || date[7] != '-')
-	{
-		std::cout << "-------" << std::endl;
         return 1;
-    }
 
     for (std::size_t i = 0; i < 10; i++) {
         if (i == 4 || i == 7) 
@@ -107,10 +99,8 @@ int verif_date(std::string date)
         daysInMonth[1] = 29;
     }
 
-    if (day < 1 || day > daysInMonth[month - 1]) {
-		std::cout << day << std::endl;
+    if (day < 1 || day > daysInMonth[month - 1])
         return 1;
-    }
 
     return 0;
 }
@@ -118,8 +108,15 @@ int verif_date(std::string date)
 double	verif_value(std::string value)
 {
 	double n = std::atof(value.c_str());
-	if (n < 0 || n > 2147483647)
+	if (n < 0){
+		std::cerr << "Error: not a positive number." << std::endl;
 		return 0;
+	}
+	
+	if (n > 1000){
+		std::cerr << "Error: too large number." << std::endl;
+		return 0;
+	}
 	return n;
 }
 
@@ -127,17 +124,14 @@ double BitcoinExchange::find_closer(std::string date)
 {
 	std::map<std::string, double>::const_iterator it = _tab.find(date);
 	if (it != _tab.end()) {
-		std::cout << "good " << date << " et lower date = " << it->first << std::endl;
         return it->second;
     }
 	it = _tab.lower_bound(date);
 	if (it == _tab.begin()) {
-        std::cerr << "Aucune date antérieure trouvée.";
+        std::cerr << "Error: date too old => " << date << std::endl;;
 		return -1;
     }
-	
 	--it;
-	std::cout << date << " et lower date = " << it->first << std::endl;
     return it->second;
 }
 
@@ -155,29 +149,25 @@ void BitcoinExchange::print()
 	std::size_t index = 1;
 	std::getline(file, line);
 	
-	
-	
 	while (std::getline(file, line) ) {
 		index++;
 		n = line.find('|');
 		if (n == -1 || static_cast<size_t>(n + 2) >= line.length()) {
-			std::cerr << "Error: Line " << index << " is invalid" << std::endl;
+			std::cerr << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 		date = line.substr(0, n - 1);
 		value = line.substr(n + 2);
 		if (verif_date(date )) {
-			std::cerr << "Error: Line " << index << " is invalid" << std::endl;
+			std::cerr << "Error: invalid date => " << date << std::endl;
 			continue;
 		}
 		double nb = verif_value(value);
-		if (nb == 0) {
-			std::cerr << "Error: Line " << index << " is invalid" << std::endl;
+		if (nb == 0)
 			continue;
-		}
 		double price_bitcoin = find_closer(date);
 		if (price_bitcoin == -1)
 			continue ;
-		// std::cout << date << " => " << value << " = " << nb * price_bitcoin << std::endl;
+		std::cout << date << " => " << value << " = " << nb * price_bitcoin << std::endl;
     }
 }
