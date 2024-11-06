@@ -18,17 +18,17 @@ HEADER		= $(addprefix $(INCDIR)/, $(INCFILE:=.hpp))
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
-    $(CC) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADER) Makefile
-    mkdir -p $(dir $@)
-    $(CC) $(FLAGS) -I$(INCDIR) -c $< -o $@
+	mkdir -p $(dir $@)
+	$(CC) $(FLAGS) -I $(INCDIR) -c $< -o $@
 
 clean:
-    $(RM) $(OBJDIR) $(OBJ)
+	$(RM) $(OBJDIR) $(OBJ)
 
 fclean: clean
-    $(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 

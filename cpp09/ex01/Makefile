@@ -22,7 +22,7 @@ $(NAME): $(OBJ) $(HEADER)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADER) Makefile
 	mkdir -p $(dir $@)
-	$(CC) $(FLAGS) -I$(INCDIR) -c $< -o $@
+	$(CC) $(FLAGS) -I $(INCDIR) -c $< -o $@
 
 clean:
 	$(RM) $(OBJDIR) $(OBJ)
