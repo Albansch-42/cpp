@@ -1,9 +1,9 @@
 #include "easyfind.hpp"
-
+#include <deque>
 
 int main(){
 
-    std::vector<int> jean;
+    std::deque<int> jean;
     jean.push_back(1);
     jean.push_back(2);
     jean.push_back(3);

@@ -13,11 +13,12 @@ class ValueNotFound : public std::exception {
 
 template<typename T>
 int	easyfind(T const & array, int n) {
-    typename T::const_iterator it = array.begin();
-    typename T::const_iterator ite = array.end();
-    if (std::find(it, ite, n) == ite)
-        throw ValueNotFound();
-    return n;
+    for (typename T::const_iterator i = array.begin(); i != array.end(); ++i)
+    {
+        if (*i == n)
+            return *i;
+    }
+    throw ValueNotFound();
 }
 
 #endif 

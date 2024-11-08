@@ -1,5 +1,11 @@
 #include "PmergeMe.hpp"
 
+void jean(std::vector<int>::iterator b, std::vector<int>::iterator e)
+{
+	(void)b;
+	(void)e;
+}	
+
 int main(int ac, char **av)
 {
 	if (ac <= 1) {
@@ -9,12 +15,18 @@ int main(int ac, char **av)
 
 	PmergeMe pmm(ac, av);
 
+	pmm.displayList("Before: ");
+	clock_t start = clock();
 
 	pmm.sorting();
 
-	
-	
-	(void)pmm;
+    double duration = (double)(clock() - start) / CLOCKS_PER_SEC * 1e6;
+	pmm.displayList("After: ");
+
+	std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << duration << " us" << std::endl;
+	pmm.CopyDeque();
+
+	// pmm.IsSorting();
 	return 0;
 }
 

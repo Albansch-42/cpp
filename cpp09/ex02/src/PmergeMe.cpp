@@ -43,21 +43,9 @@ PmergeMe::PmergeMe(int ac, char **av)
 			exit(1);
 		}
 		list.push_back(atoi(av[i]));
+		deque.push_back(atoi(av[i]));
 	}
 	NbElements = ac - 1;
-
-	// for (size_t i = 0; i < NbElements; i++)
-	// {
-	// 	for (size_t j = 0; j < NbElements; j++)
-	// 	{
-	// 		if (list[i] == list[j])
-	// 		{
-	// 			std::cerr << "Error: " << list[i] << " is duplicated" << std::endl;
-	// 			exit(1);
-	// 		}
-	// 	}
-
-	// }
 }
 
 void PmergeMe::displayList(std::string s)
@@ -93,108 +81,81 @@ void sort(std::vector<int>::iterator b, std::vector<int>::iterator e)
 	}
 }
 
-void  PmergeMe::test(std::vector<int>::iterator a, std::vector<int>::iterator b, std::vector<int>::iterator c)
+std::vector<int>  PmergeMe::test(std::vector<int>::iterator a, std::vector<int>::iterator e, std::vector<int>::iterator b2, std::vector<int>::iterator e2)
 {
-	if (c != list.end())
-	{
-		if (*c < *a)
-		{
-			std::rotate(a, b, c + 1);
-		}
-		else if (*c > *(b - 1))
-		{
-			std::rotate(b, c + 1, c + 1);
-		}
-		else
-		{
-			for (std::vector<int>::iterator it = a; it != b; ++it)
-			{
-				if (*c < *it)
-				{
-					std::rotate(it, b, c + 1);
-					break;
-				}
-			}
-		}
-	}
+	std::vector<int> res;
+    bool insert = false;
 
-	if ((c + 1) != list.end())
-	{
-		if (*(c + 1) < *a)
-		{
-			std::rotate(a, b, c + 2);
-		}
-		else if (*(c + 1) > *(b - 1))
-		{
-			std::rotate(b, c + 2, c + 2);
-		}
-		else
-		{
-			for (std::vector<int>::iterator it = a; it != b; ++it)
-			{
-				if (*(c + 1) < *it)
-				{
-					std::rotate(it, b, c + 2);
-					break;
-				}
-			}
-		}
-	}
+    while (a != e)
+    {
+        if (*a > *b2 && !insert)
+        {
+            res.push_back(*b2);
+            if (std::distance(b2, e2) == 2)
+                b2++;
+            else
+                insert = true;
+        }
+        else
+        {
+            res.push_back(*a);
+            a++;
+        }
+    }
+    if (!insert)
+    {
+        res.push_back(*b2);
+        if (std::distance(b2, e2) == 2)
+            res.push_back(*(b2 + 1));
+    }
+    return res;
 }
-// {
-// 	(void)a;
-// 	(void)b;
-// 	(void)c;
-// 	(void)d;
-
-// 	for (std::vector<int>::iterator c = a; c != b; c++)
-// 	{
-// 		std::cout << *c << " " ;
-// 	}
-// 	std::cout << std::endl;
-// }
-
-/*
-if (*c < *a) {
-		std::rotate(a, b, c + 1);
-	} else if (*c > *(b - 1)) {
-		std::rotate(b, c + 1, c + 1);
-	} else {
-		for (std::vector<int>::iterator it = a; it != b; ++it) {
-			if (*c < *it) {
-				std::rotate(it, b, c + 1);
-				break;
-			}
-		}
-	}
-
-	if (*(c + 1) < *a) {
-		std::rotate(a, b, c + 2);
-	} else if (*(c + 1) > *(b - 1)) {
-		std::rotate(b, c + 2, c + 2);
-	} else {
-		for (std::vector<int>::iterator it = a; it != b; ++it) {
-			if (*(c + 1) < *it) {
-				std::rotate(it, b, c + 2);
-				break;
-			}
-		}
-	}
-*/
 
 void PmergeMe::insert(std::vector<int>::iterator b, std::vector<int>::iterator e)
 {
-	for (int i = 0; i < std::distance(b, e) / 2; i++)
+	for (int i = 0; i < std::distance(b, e) / 2 - 1; i++)
 	{
-		test(b, b + (i * 2) + 2, b + (i * 2) + 2);
+		// displayList("");
+		if ((i * 2) + 4 > std::distance(b, e))
+		{
+			// std::cout << "test 1" << std::endl;
+			list = test(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 3);
+		}
+		else
+		{
+			// std::cout << "test 2" << std::endl;
+			list = test(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 4);
+		}
 	}
 }
 
 void PmergeMe::sorting()
 {
-	displayList("before: ");
 	sort(list.begin(), list.end());
 
 	insert(list.begin(), list.end());
-	displayList("After: ");
+	
+}
+
+void PmergeMe::IsSorting()
+{
+	for (size_t i = 0; i < NbElements; i++)
+	{
+		if (list[i] > list[i + 1]){
+			std::cout << "NON TRIER" << std::endl;
+			return ;
+		}
+	}
+	std::cout << "TRIER" << std::endl;
+}
+
+
+void PmergeMe::CopyDeque()
+{
+
+	for (std::deque<int>::iterator it = deque.begin(); it != deque.end(); it++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 }

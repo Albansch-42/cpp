@@ -11,14 +11,16 @@
 # include <cerrno>
 # include <sys/time.h>
 # include <algorithm> 
+# include <deque>
 
 class PmergeMe
 {
 	private :
 		struct timeval _start;
 		struct timeval _end;
-		unsigned int NbElements;
+		size_t NbElements;
 		std::vector<int> list;
+		std::deque<int> deque;
 
 	public :
 		PmergeMe(int ac, char **av);
@@ -28,8 +30,10 @@ class PmergeMe
 		void displayList(std::string s);
 		void sorting();
 
-		void  test(std::vector<int>::iterator a, std::vector<int>::iterator b, std::vector<int>::iterator c);
+		std::vector<int>  test(std::vector<int>::iterator a, std::vector<int>::iterator e, std::vector<int>::iterator b2, std::vector<int>::iterator e2);
 		void insert(std::vector<int>::iterator b, std::vector<int>::iterator e);
+		void IsSorting();
+		void CopyDeque();
 };
 
 // std::ostream& operator<<(std::ostream& os, const PmergeMe& other);
