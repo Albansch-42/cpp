@@ -1,4 +1,4 @@
-#include "PmergeMe.hpp"
+#include "../inc/PmergeMe.hpp"
 
 PmergeMe::~PmergeMe()
 {
@@ -70,20 +70,76 @@ void little_sort(typename T::iterator b, typename T::iterator e)
         {
             std::iter_swap(b, b + 1);
         }
+		// if (*b > *(b + 1))
+		// {
+		// 	int tmp = *b;
+		// 	*b = *(b + 1);
+		// 	*(b + 1) = tmp;
+		// }
     } 
     else 
     {
         for (int i = 0; i < std::distance(b, e) / 2; ++i) 
         {
-            little_sort(b + (i * 2), b + (i * 2) + 2);
+            little_sort<T>(b + (i * 2), b + (i * 2) + 2);
         }
     }
+}
+
+template<typename T>
+T  PmergeMe::test(typename T::iterator b1, typename T::iterator e1, typename T::iterator b2, typename T::iterator e2)
+{
+	std::vector<int> res;
+    bool insert = false;
+
+    while (b1 != e1)
+    {
+        if (*b1 > *b2 && !insert)
+        {
+            res.push_back(*b2);
+            if (std::distance(b2, e2) == 2)
+                b2++;
+            else
+                insert = true;
+        }
+        else
+        {
+            res.push_back(*b1);
+            b1++;
+        }
+    }
+    if (!insert)
+    {
+        res.push_back(*b2);
+        if (std::distance(b2, e2) == 2)
+            res.push_back(*(b2 + 1));
+    }
+    return res;
+}
+
+template<typename T>
+void PmergeMe::insert(typename T::iterator b, typename T::iterator e)
+{
+	for (int i = 0; i < std::distance(b, e) / 2 - 1; i++)
+	{
+		// displayList("");
+		if ((i * 2) + 4 > std::distance(b, e))
+		{
+			// std::cout << "test 1" << std::endl;
+			list = test<T>(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 3);
+		}
+		else
+		{
+			// std::cout << "test 2" << std::endl;
+			list = test<T>(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 4);
+		}
+	}
 }
 
 void PmergeMe::sorting()
 {
 	little_sort<std::vector<int>>(list.begin(), list.end());
     
-	insert(list.begin(), list.end());
+	insert<std::vector<int>>(list.begin(), list.end());
 	
 }

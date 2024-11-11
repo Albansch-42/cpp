@@ -113,18 +113,19 @@ std::vector<int>  PmergeMe::test(std::vector<int>::iterator a, std::vector<int>:
 
 void PmergeMe::insert(std::vector<int>::iterator b, std::vector<int>::iterator e)
 {
-	for (int i = 0; i < std::distance(b, e) / 2 - 1; i++)
+	int num = std::distance(b, e) / 2 ; // + std::distance(b, e) % 2;
+	for (int i = 0; i < num; i++)
 	{
 		// displayList("");
 		if ((i * 2) + 4 > std::distance(b, e))
 		{
-			// std::cout << "test 1" << std::endl;
+			std::cout << "test 1" << std::endl;
 			list = test(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 3);
 		}
 		else
 		{
-			// std::cout << "test 2" << std::endl;
-			list = test(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 4);
+			std::cout << "test 2" << std::endl;
+			list = test(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 3);
 		}
 	}
 }
@@ -139,6 +140,8 @@ void PmergeMe::sorting()
 
 void PmergeMe::IsSorting()
 {
+
+	std::cout << "size: " << list.size() << std::endl;
 	for (size_t i = 0; i < NbElements; i++)
 	{
 		if (list[i] > list[i + 1]){

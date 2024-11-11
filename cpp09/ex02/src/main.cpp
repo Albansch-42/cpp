@@ -15,7 +15,7 @@ int main(int ac, char **av)
 
 	PmergeMe pmm(ac, av);
 
-	pmm.displayList("Before: ");
+	pmm.displayList( "Before: ");
 	clock_t start = clock();
 
 	pmm.sorting();
@@ -24,9 +24,8 @@ int main(int ac, char **av)
 	pmm.displayList("After: ");
 
 	std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << duration << " us" << std::endl;
-	pmm.CopyDeque();
 
-	// pmm.IsSorting();
+	pmm.IsSorting();
 	return 0;
 }
 
