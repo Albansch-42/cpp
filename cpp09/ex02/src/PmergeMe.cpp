@@ -56,6 +56,14 @@ void PmergeMe::DisplayVector(std::string s)
 	std::cout << std::endl;
 }
 
+void PmergeMe::DisplayDeque(std::string s)
+{
+	std::cout << s;
+	for (std::deque<int>::iterator it = deque.begin(); it != deque.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
 void PmergeMe::IsSorting()
 {
 	for (size_t i = 0; i < NbElements - 1; i++)
@@ -65,16 +73,23 @@ void PmergeMe::IsSorting()
 			std::cout << vector[i] << " " << vector[i + 1] << std::endl;
 			return ;
 		}
+		if (deque[i] > deque[i+1]){
+			std::cout << "NON TRIER" << std::endl;
+			std::cout << deque[i] << " " << deque[i + 1] << std::endl;
+			return ;
+		}
 	}
+
+
+	
 	std::cout << "TRIER" << std::endl;
 }
 
-std::vector<int> &PmergeMe::GetVector()
-{
-	return vector;
-}
+std::vector<int> &PmergeMe::GetVector() { return vector; }
+std::deque<int> &PmergeMe::GetDeque() { return deque; }
 
-void finish_vec(std::vector<int>::iterator it, std::vector<int>::iterator end, std::vector<int> &vec) {
+template <typename T>
+void finish_vec(typename T::iterator it, typename T::iterator end, T &vec) {
 	while (it != end){
 		vec.push_back(*it);
 		it++;
@@ -105,11 +120,11 @@ void merge(std::vector<int> &left, std::vector<int> &right, std::vector<int> &ve
 			it_right++;
 		}
 	}
-	finish_vec(it_left, end_left, vec);
-	finish_vec(it_right, end_right, vec);
+	finish_vec<std::vector<int> >(it_left, end_left, vec);
+	finish_vec<std::vector<int> >(it_right, end_right, vec);
 }
 
-void PmergeMe::MegeInsert_vector(std::vector<int> &vec)
+void PmergeMe::MegeInsert(std::vector<int> &vec)
 {
 	if (vec.size() <= 1)
 		return;
@@ -121,9 +136,54 @@ void PmergeMe::MegeInsert_vector(std::vector<int> &vec)
 
     left.assign(vec.begin(), vec.begin() + middle);
     right.assign(vec.begin() + middle, vec.end());
-	PmergeMe::MegeInsert_vector(left);
-	PmergeMe::MegeInsert_vector(right);
+	PmergeMe::MegeInsert(left);
+	PmergeMe::MegeInsert(right);
 	merge(left, right, vec);
+}
+
+
+void merge(std::deque<int> &left, std::deque<int> &right, std::deque<int> &deque)
+{
+	std::deque<int>::iterator it_left = left.begin();
+	std::deque<int>::iterator end_left = left.end();
+
+	std::deque<int>::iterator it_right = right.begin();
+	std::deque<int>::iterator end_right = right.end();
+
+	deque.clear();
+
+	while (it_left != end_left && it_right != end_right)
+	{
+		if (*it_left < *it_right)
+		{
+			deque.push_back(*it_left);
+			it_left++;
+		}
+		else
+		{
+			deque.push_back(*it_right);
+			it_right++;
+		}
+	}
+	finish_vec<std::deque<int> >(it_left, end_left, deque);
+	finish_vec<std::deque<int> >(it_right, end_right, deque);
+}
+
+void PmergeMe::MegeInsert(std::deque<int> &deque)
+{
+	if (deque.size() <= 1)
+		return;
+
+    size_t middle = deque.size() / 2;
+
+    std::deque<int> left;
+    std::deque<int> right;
+
+    left.assign(deque.begin(), deque.begin() + middle);
+    right.assign(deque.begin() + middle, deque.end());
+	PmergeMe::MegeInsert(left);
+	PmergeMe::MegeInsert(right);
+	merge(left, right, deque);
 }
 
 
@@ -174,3 +234,5 @@ void PmergeMe::MegeInsert_vector(std::vector<int> &vec)
 	// 	index++;
 	// 	index_right++;
 	// }
+
+

@@ -16,8 +16,6 @@
 class PmergeMe
 {
 	private :
-		struct timeval _start;
-		struct timeval _end;
 		size_t NbElements;
 		std::vector<int> vector;
 		std::deque<int> deque;
@@ -28,10 +26,13 @@ class PmergeMe
 		PmergeMe(const PmergeMe &other);
 		PmergeMe& operator=(const PmergeMe &other);
 		void DisplayVector(std::string s);
+		void DisplayDeque(std::string s);
 		std::vector<int> &GetVector();
+		std::deque<int> &GetDeque();
 
 		void IsSorting();
-		void MegeInsert_vector(std::vector<int> &vector);
+		void MegeInsert(std::vector<int> &vector);
+		void MegeInsert(std::deque<int> &deque);
 };
 
 // std::ostream& operator<<(std::ostream& os, const PmergeMe& other);
