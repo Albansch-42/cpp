@@ -15,13 +15,13 @@ int main(int ac, char **av)
 
 	PmergeMe pmm(ac, av);
 
-	pmm.displayList( "Before: ");
+	pmm.DisplayVector( "Before: ");
 	clock_t start = clock();
 
-	pmm.sorting();
+	pmm.MegeInsert_vector(pmm.GetVector());
 
     double duration = (double)(clock() - start) / CLOCKS_PER_SEC * 1e6;
-	pmm.displayList("After: ");
+	pmm.DisplayVector("After: ");
 
 	std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << duration << " us" << std::endl;
 

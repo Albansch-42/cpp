@@ -42,123 +42,135 @@ PmergeMe::PmergeMe(int ac, char **av)
 			std::cerr << "Error: " << av[i] << " isn't a positif number" << std::endl;
 			exit(1);
 		}
-		list.push_back(atoi(av[i]));
+		vector.push_back(atoi(av[i]));
 		deque.push_back(atoi(av[i]));
 	}
 	NbElements = ac - 1;
 }
 
-void PmergeMe::displayList(std::string s)
+void PmergeMe::DisplayVector(std::string s)
 {
 	std::cout << s;
-
-	for (std::vector<int>::iterator it = list.begin(); it != list.end(); it++)
-	{
+	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
 		std::cout << *it << " ";
-	}
-
 	std::cout << std::endl;
-}
-
-void sort(std::vector<int>::iterator b, std::vector<int>::iterator e)
-{
-	if (std::distance(b, e) <= 2)
-	{
-
-		if (*b > *(b + 1))
-		{
-			int tmp = *b;
-			*b = *(b + 1);
-			*(b + 1) = tmp;
-		}
-	}
-	else
-	{
-		for (int i = 0; i < std::distance(b, e) / 2; i++)
-		{
-			sort(b + (i * 2), b + (i * 2) + 2);
-		}
-	}
-}
-
-std::vector<int>  PmergeMe::test(std::vector<int>::iterator a, std::vector<int>::iterator e, std::vector<int>::iterator b2, std::vector<int>::iterator e2)
-{
-	std::vector<int> res;
-    bool insert = false;
-
-    while (a != e)
-    {
-        if (*a > *b2 && !insert)
-        {
-            res.push_back(*b2);
-            if (std::distance(b2, e2) == 2)
-                b2++;
-            else
-                insert = true;
-        }
-        else
-        {
-            res.push_back(*a);
-            a++;
-        }
-    }
-    if (!insert)
-    {
-        res.push_back(*b2);
-        if (std::distance(b2, e2) == 2)
-            res.push_back(*(b2 + 1));
-    }
-    return res;
-}
-
-void PmergeMe::insert(std::vector<int>::iterator b, std::vector<int>::iterator e)
-{
-	int num = std::distance(b, e) / 2 ; // + std::distance(b, e) % 2;
-	for (int i = 0; i < num; i++)
-	{
-		// displayList("");
-		if ((i * 2) + 4 > std::distance(b, e))
-		{
-			std::cout << "test 1" << std::endl;
-			list = test(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 3);
-		}
-		else
-		{
-			std::cout << "test 2" << std::endl;
-			list = test(b, b + (i * 2) + 2, b + (i * 2) + 2, b + (i * 2) + 3);
-		}
-	}
-}
-
-void PmergeMe::sorting()
-{
-	sort(list.begin(), list.end());
-
-	insert(list.begin(), list.end());
-	
 }
 
 void PmergeMe::IsSorting()
 {
-
-	std::cout << "size: " << list.size() << std::endl;
-	for (size_t i = 0; i < NbElements; i++)
+	for (size_t i = 0; i < NbElements - 1; i++)
 	{
-		if (list[i] > list[i + 1]){
+		if (vector[i] > vector[i + 1]){
 			std::cout << "NON TRIER" << std::endl;
+			std::cout << vector[i] << " " << vector[i + 1] << std::endl;
 			return ;
 		}
 	}
 	std::cout << "TRIER" << std::endl;
 }
 
-
-void PmergeMe::CopyDeque()
+std::vector<int> &PmergeMe::GetVector()
 {
-
-	for (std::deque<int>::iterator it = deque.begin(); it != deque.end(); it++)
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
+	return vector;
 }
+
+void finish_vec(std::vector<int>::iterator it, std::vector<int>::iterator end, std::vector<int> &vec) {
+	while (it != end){
+		vec.push_back(*it);
+		it++;
+	}
+}
+
+void merge(std::vector<int> &left, std::vector<int> &right, std::vector<int> &vec)
+{
+	
+	std::vector<int>::iterator it_left = left.begin();
+	std::vector<int>::iterator end_left = left.end();
+
+	std::vector<int>::iterator it_right = right.begin();
+	std::vector<int>::iterator end_right = right.end();
+
+	vec.clear();
+
+	while (it_left != end_left && it_right != end_right)
+	{
+		if (*it_left < *it_right)
+		{
+			vec.push_back(*it_left);
+			it_left++;
+		}
+		else
+		{
+			vec.push_back(*it_right);
+			it_right++;
+		}
+	}
+	finish_vec(it_left, end_left, vec);
+	finish_vec(it_right, end_right, vec);
+}
+
+void PmergeMe::MegeInsert_vector(std::vector<int> &vec)
+{
+	if (vec.size() <= 1)
+		return;
+
+    size_t middle = vec.size() / 2;
+
+    std::vector<int> left;
+    std::vector<int> right;
+
+    left.assign(vec.begin(), vec.begin() + middle);
+    right.assign(vec.begin() + middle, vec.end());
+	PmergeMe::MegeInsert_vector(left);
+	PmergeMe::MegeInsert_vector(right);
+	merge(left, right, vec);
+}
+
+
+// std::cout << "left: ";
+	// for (std::vector<int>::iterator it = left.begin(); it != left.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+
+	// std::cout << "right: ";
+	// for (std::vector<int>::iterator it = right.begin(); it != right.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+
+	// std::cout << "vec: ";
+	// for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl << std::endl;
+
+	// size_t index_left = 0;
+	// size_t index_right = 0;
+	// size_t index = 0;
+
+	// while (index_left < left.size() && index_right < right.size())
+	// {
+	// 	if (left[index_left] < right[index_right])
+	// 	{
+	// 		vec[index] = left[index_left];
+	// 		index++;
+	// 		index_left++;
+	// 	}
+	// 	index_left++;
+	// }
+	// while (index_right < right.size())
+	// {
+	// 	vec[index] = right[index_right];
+	// 	index++;
+	// 	index_right++;
+	// }
+	// while (index_left < left.size())
+	// {
+	// 	vec[index] = left[index_left];
+	// 	index++;
+	// 	index_left++;
+	// }
+	// while (index_right < right.size())
+	// {
+	// 	vec[index] = right[index_right];
+	// 	index++;
+	// 	index_right++;
+	// }
