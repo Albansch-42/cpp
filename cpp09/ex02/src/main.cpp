@@ -28,7 +28,7 @@ int main(int ac, char **av)
 
 	std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : " << duration << " us" << std::endl;
 
-	// pmm.IsSorting();
+	pmm.IsSorting();
 
 	return 0;
 }

@@ -2,16 +2,11 @@
 # define PMERGEME_HPP
 
 # include <iostream>
-# include <ctime>
-# include <unistd.h>
-# include <vector>
-# include <cstdlib> // for atoi()
-# include <climits> // for INT_MAX and INT_MIN
-# include <cctype>
+# include <cstdlib>
+# include <climits>
 # include <cerrno>
-# include <sys/time.h>
-# include <algorithm> 
 # include <deque>
+# include <vector>
 
 class PmergeMe
 {

@@ -23,8 +23,8 @@ RPN::~RPN() { }
 void RPN::calcul(char c)
 {
 	if (q.size() < 2){
-				std::cerr << "Invalid RPN expression" << std::endl;
-				exit(1);
+		std::cerr << "Invalid RPN expression" << std::endl;
+		exit(1);
 	}
 	int num = q.top();
 	q.pop();

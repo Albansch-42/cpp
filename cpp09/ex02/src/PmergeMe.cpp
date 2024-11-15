@@ -27,7 +27,7 @@ bool isValidInt(const char *str)
 	if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN)) || (errno != 0 && val == 0))
 		return false;
 
-	if (endptr == str || val > INT_MAX || val < 0)
+	if (endptr == str || *endptr != '\0' || val > INT_MAX || val <= 0)
 		return false;
 
 	return true;
@@ -69,19 +69,17 @@ void PmergeMe::IsSorting()
 	for (size_t i = 0; i < NbElements - 1; i++)
 	{
 		if (vector[i] > vector[i + 1]){
-			std::cout << "NON TRIER" << std::endl;
+			std::cout << "VECTOR NON TRIER" << std::endl;
 			std::cout << vector[i] << " " << vector[i + 1] << std::endl;
 			return ;
 		}
 		if (deque[i] > deque[i+1]){
-			std::cout << "NON TRIER" << std::endl;
+			std::cout << "DEQUE NON TRIER" << std::endl;
 			std::cout << deque[i] << " " << deque[i + 1] << std::endl;
 			return ;
 		}
 	}
 
-
-	
 	std::cout << "TRIER" << std::endl;
 }
 
@@ -185,54 +183,3 @@ void PmergeMe::MegeInsert(std::deque<int> &deque)
 	PmergeMe::MegeInsert(right);
 	merge(left, right, deque);
 }
-
-
-// std::cout << "left: ";
-	// for (std::vector<int>::iterator it = left.begin(); it != left.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
-
-	// std::cout << "right: ";
-	// for (std::vector<int>::iterator it = right.begin(); it != right.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
-
-	// std::cout << "vec: ";
-	// for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl << std::endl;
-
-	// size_t index_left = 0;
-	// size_t index_right = 0;
-	// size_t index = 0;
-
-	// while (index_left < left.size() && index_right < right.size())
-	// {
-	// 	if (left[index_left] < right[index_right])
-	// 	{
-	// 		vec[index] = left[index_left];
-	// 		index++;
-	// 		index_left++;
-	// 	}
-	// 	index_left++;
-	// }
-	// while (index_right < right.size())
-	// {
-	// 	vec[index] = right[index_right];
-	// 	index++;
-	// 	index_right++;
-	// }
-	// while (index_left < left.size())
-	// {
-	// 	vec[index] = left[index_left];
-	// 	index++;
-	// 	index_left++;
-	// }
-	// while (index_right < right.size())
-	// {
-	// 	vec[index] = right[index_right];
-	// 	index++;
-	// 	index_right++;
-	// }
-
-
